@@ -11,10 +11,22 @@ namespace CadastroDeErros
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
-            ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+
+            // Exibe o formulário de login
+            Form2 loginForm = new Form2();
+            if (loginForm.ShowDialog() == DialogResult.OK)
+            {
+                // Se o login for bem-sucedido, abre o formulário de cadastro
+                Application.Run(new Form1());
+            }
+            else
+            {
+                // Fecha a aplicação se o login não for realizado
+                Application.Exit();
+            }
         }
+
     }
 }
