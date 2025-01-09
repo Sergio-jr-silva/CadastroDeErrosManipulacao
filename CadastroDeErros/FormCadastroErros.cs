@@ -4,11 +4,11 @@ using System.Windows.Forms;
 
 namespace CadastroDeErros
 {
-    public partial class Form1 : Form
+    public partial class FormCadastroErros : Form
     {
         private readonly string connectionString = "server=localhost;port=3306;database=ControleErros;user=root;password=3477;";
 
-        public Form1()
+        public FormCadastroErros()
         {
             InitializeComponent();
         }
@@ -192,7 +192,7 @@ namespace CadastroDeErros
 
                 MessageBox.Show("Registro inserido com sucesso!");
                 ResetarFormulario();
-                
+
             }
             catch (Exception ex)
             {
@@ -216,7 +216,7 @@ namespace CadastroDeErros
                 : null;
 
             tipoErro = TipoErro.SelectedItem is ComboBoxTipoErro selectedTipoErro
-                ? selectedTipoErro.descricao 
+                ? selectedTipoErro.descricao
                 : null;
 
             descErro = DescErro.Text;
@@ -268,6 +268,7 @@ namespace CadastroDeErros
             }
         }
 
+      
     }
 
     public class ComboBoxManipulador

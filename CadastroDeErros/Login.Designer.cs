@@ -1,6 +1,6 @@
 ﻿namespace CadastroDeErros
 {
-    partial class Form2
+    partial class Login
     {
         /// <summary>
         /// Required designer variable.
@@ -31,9 +31,9 @@
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
-            login = new TextBox();
             senha = new TextBox();
             button1 = new Button();
+            usuario = new TextBox();
             SuspendLayout();
             // 
             // label1
@@ -66,20 +66,13 @@
             label3.TabIndex = 2;
             label3.Text = "SISTEMA DE ERROS";
             // 
-            // login
-            // 
-            login.Location = new Point(340, 155);
-            login.Name = "login";
-            login.Size = new Size(225, 27);
-            login.TabIndex = 3;
-            // 
             // senha
             // 
             senha.Location = new Point(340, 245);
             senha.Name = "senha";
             senha.PasswordChar = '*';
             senha.Size = new Size(225, 27);
-            senha.TabIndex = 4;
+            senha.TabIndex = 2;
             // 
             // button1
             // 
@@ -92,18 +85,26 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
-            // Form2
+            // usuario
+            // 
+            usuario.Location = new Point(328, 157);
+            usuario.Name = "usuario";
+            usuario.Size = new Size(237, 27);
+            usuario.TabIndex = 1;
+          
+            // 
+            // Login
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(819, 477);
+            Controls.Add(usuario);
             Controls.Add(button1);
             Controls.Add(senha);
-            Controls.Add(login);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
-            Name = "Form2";
+            Name = "Login";
             Text = "Sistema De Erros";
             Load += Form2_Load;
             ResumeLayout(false);
@@ -115,8 +116,8 @@
         private Label label1;
         private Label label2;
         private Label label3;
-        private TextBox login;
         private TextBox senha;
         private Button button1;
+        private TextBox usuario;
     }
 }

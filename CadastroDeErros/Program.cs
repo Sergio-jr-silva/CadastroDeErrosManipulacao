@@ -1,6 +1,3 @@
-using System;
-using MySql.Data.MySqlClient;
-
 namespace CadastroDeErros
 {
     internal static class Program
@@ -15,18 +12,26 @@ namespace CadastroDeErros
             Application.SetCompatibleTextRenderingDefault(false);
 
             // Exibe o formulário de login
-            Form2 loginForm = new Form2();
+            Login loginForm = new Login();
+
             if (loginForm.ShowDialog() == DialogResult.OK)
             {
-                // Se o login for bem-sucedido, abre o formulário de cadastro
-                Application.Run(new Form1());
+                // Verifica o tipo de usuário logado
+                if (loginForm.UsuarioLogado == "Supervisor")
+                {
+                    // Abre a tela de supervisão
+                    Application.Run(new TelaSupervisor());
+                }
+                else
+                {
+                    // Abre a tela de cadastro de erros
+                    Application.Run(new FormCadastroErros());
+                }
             }
             else
             {
-                // Fecha a aplicação se o login não for realizado
-                Application.Exit();
+                Application.Exit(); // Fecha a aplicação se o login não for realizado
             }
         }
-
     }
 }

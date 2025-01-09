@@ -1,6 +1,6 @@
 ﻿namespace CadastroDeErros
 {
-    partial class Form1
+    partial class FormCadastroErros
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCadastroErros));
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -54,7 +54,6 @@
             label1.Size = new Size(122, 24);
             label1.TabIndex = 0;
             label1.Text = "Manipulador";
-        
             // 
             // label2
             // 
@@ -63,7 +62,6 @@
             label2.Name = "label2";
             label2.Size = new Size(0, 20);
             label2.TabIndex = 1;
-           
             // 
             // label3
             // 
@@ -102,7 +100,6 @@
             label4.Size = new Size(57, 25);
             label4.TabIndex = 6;
             label4.Text = "Erro: ";
-           
             // 
             // desc
             // 
@@ -142,7 +139,6 @@
             label6.Size = new Size(110, 24);
             label6.TabIndex = 10;
             label6.Text = "Fornecedor";
-           
             // 
             // label7
             // 
@@ -153,7 +149,6 @@
             label7.Size = new Size(82, 24);
             label7.TabIndex = 11;
             label7.Text = "Produto";
-            
             // 
             // Fornecedor
             // 
@@ -163,6 +158,7 @@
             Fornecedor.Name = "Fornecedor";
             Fornecedor.Size = new Size(112, 28);
             Fornecedor.TabIndex = 2;
+           
             // 
             // Produto
             // 
@@ -182,7 +178,7 @@
             DataCadastro.Size = new Size(250, 27);
             DataCadastro.TabIndex = 12;
             // 
-            // Form1
+            // FormCadastroErros
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -206,7 +202,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MinimizeBox = false;
-            Name = "Form1";
+            Name = "FormCadastroErros";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Cadastro de erros Manipulação";
             Load += Form1_Load;
