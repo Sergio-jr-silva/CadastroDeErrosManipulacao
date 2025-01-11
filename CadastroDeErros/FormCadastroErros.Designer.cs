@@ -43,6 +43,10 @@
             Fornecedor = new ComboBox();
             Produto = new ComboBox();
             DataCadastro = new DateTimePicker();
+            label5 = new Label();
+            quantidade = new TextBox();
+            label = new Label();
+            valor = new TextBox();
             SuspendLayout();
             // 
             // label1
@@ -105,7 +109,7 @@
             // 
             desc.AutoSize = true;
             desc.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            desc.Location = new Point(44, 178);
+            desc.Location = new Point(109, 243);
             desc.Name = "desc";
             desc.Size = new Size(171, 25);
             desc.TabIndex = 7;
@@ -113,7 +117,7 @@
             // 
             // DescErro
             // 
-            DescErro.Location = new Point(44, 206);
+            DescErro.Location = new Point(109, 283);
             DescErro.Multiline = true;
             DescErro.Name = "DescErro";
             DescErro.Size = new Size(515, 133);
@@ -122,7 +126,7 @@
             // btnCadastrar
             // 
             btnCadastrar.Font = new Font("Segoe UI Emoji", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnCadastrar.Location = new Point(257, 395);
+            btnCadastrar.Location = new Point(242, 464);
             btnCadastrar.Name = "btnCadastrar";
             btnCadastrar.Size = new Size(196, 36);
             btnCadastrar.TabIndex = 9;
@@ -158,7 +162,6 @@
             Fornecedor.Name = "Fornecedor";
             Fornecedor.Size = new Size(112, 28);
             Fornecedor.TabIndex = 2;
-           
             // 
             // Produto
             // 
@@ -178,12 +181,50 @@
             DataCadastro.Size = new Size(250, 27);
             DataCadastro.TabIndex = 12;
             // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI Emoji", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.Location = new Point(38, 185);
+            label5.Name = "label5";
+            label5.Size = new Size(113, 24);
+            label5.TabIndex = 13;
+            label5.Text = "Quantidade";
+            // 
+            // quantidade
+            // 
+            quantidade.Location = new Point(157, 186);
+            quantidade.Name = "quantidade";
+            quantidade.Size = new Size(125, 27);
+            quantidade.TabIndex = 15;
+            // 
+            // label
+            // 
+            label.AutoSize = true;
+            label.Font = new Font("Segoe UI Emoji", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label.Location = new Point(353, 189);
+            label.Name = "label";
+            label.Size = new Size(85, 24);
+            label.TabIndex = 14;
+            label.Text = "Valor R$";
+            // 
+            // valor
+            // 
+            valor.Location = new Point(444, 189);
+            valor.Name = "valor";
+            valor.Size = new Size(125, 27);
+            valor.TabIndex = 16;
+            // 
             // FormCadastroErros
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(224, 224, 224);
             ClientSize = new Size(753, 512);
+            Controls.Add(valor);
+            Controls.Add(quantidade);
+            Controls.Add(label);
+            Controls.Add(label5);
             Controls.Add(DataCadastro);
             Controls.Add(Produto);
             Controls.Add(Fornecedor);
@@ -226,5 +267,9 @@
         private ComboBox Fornecedor;
         private ComboBox Produto;
         private DateTimePicker DataCadastro;
+        private Label label5;
+        private TextBox quantidade;
+        private Label label;
+        private TextBox valor;
     }
 }

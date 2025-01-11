@@ -1,4 +1,4 @@
-global using MySql.Data.MySqlClient;
+using MySql.Data.MySqlClient;
 using System;
 using System.Windows.Forms;
 
@@ -15,19 +15,14 @@ namespace CadastroDeErros
 
         private void ResetarFormulario()
         {
-            // Limpa os campos de seleção
             cmbManipulador.SelectedIndex = -1;
             Fornecedor.SelectedIndex = -1;
             Produto.SelectedIndex = -1;
             TipoErro.SelectedIndex = -1;
-
-            // Limpa o campo de descrição do erro
             DescErro.Text = string.Empty;
-
-            // Redefine a data de cadastro para a data atual
+            quantidade.Text = string.Empty;
+            valor.Text = string.Empty;
             DataCadastro.Value = DateTime.Now;
-
-            // Remove os itens carregados nas listas (opcional, se necessário recarregar do banco)
             Produto.Items.Clear();
         }
 
@@ -36,8 +31,6 @@ namespace CadastroDeErros
             CarregarManipuladores();
             CarregarFornecedor();
             CarregarTipoErro();
-
-            // Adiciona o evento para quando o fornecedor for alterado
             Fornecedor.SelectedIndexChanged += Fornecedor_SelectedIndexChanged;
         }
 
@@ -135,7 +128,7 @@ namespace CadastroDeErros
             }
         }
 
-        private void CarregarProdutos(string EmpresaId)
+        private void CarregarProdutos(string empresaId)
         {
             string query = "SELECT IdProdutos, DESCRICAO FROM PRODUTOS WHERE EmpresaId = @EmpresaId;";
 
@@ -147,7 +140,7 @@ namespace CadastroDeErros
 
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@EmpresaId", EmpresaId);
+                        cmd.Parameters.AddWithValue("@EmpresaId", empresaId);
 
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
@@ -183,12 +176,12 @@ namespace CadastroDeErros
             try
             {
                 if (!ValidarEntradas(out string manipulador, out string fornecedor, out string produto,
-                                     out string tipoErro, out string descErro, out DateTime dataCadastro))
+                                     out string tipoErro, out string descErro, out DateTime dataCadastro, out decimal valor, out int quantidade))
                 {
                     return;
                 }
 
-                InserirErro(manipulador, fornecedor, produto, tipoErro, descErro, dataCadastro);
+                InserirErro(manipulador, fornecedor, produto, tipoErro, descErro, dataCadastro, valor, quantidade);
 
                 MessageBox.Show("Registro inserido com sucesso!");
                 ResetarFormulario();
@@ -201,54 +194,80 @@ namespace CadastroDeErros
         }
 
         private bool ValidarEntradas(out string manipulador, out string fornecedor, out string produto,
-                                out string tipoErro, out string descErro, out DateTime dataCadastro)
+                              out string tipoErro, out string descErro, out DateTime dataCadastro,
+                              out decimal Valor, out int Quantidade)
         {
-            manipulador = cmbManipulador.SelectedItem is ComboBoxManipulador selectedManipulador
-                ? selectedManipulador.nome // Agora pega o nome
-                : null;
+            // Inicializa os parâmetros out com valores padrão
+            manipulador = null;
+            fornecedor = null;
+            produto = null;
+            tipoErro = null;
+            descErro = null;
+            dataCadastro = DateTime.MinValue;
+            Valor = 0;
+            Quantidade = 0;
 
-            fornecedor = Fornecedor.SelectedItem is ComboBoxFornecedor selectedFornecedor
-                ? selectedFornecedor.nome // Agora pega o nome
-                : null;
-
-            produto = Produto.SelectedItem is ComboBoxProdutos selectedProduto
-                ? selectedProduto.descricao // Agora pega o nome
-                : null;
-
-            tipoErro = TipoErro.SelectedItem is ComboBoxTipoErro selectedTipoErro
-                ? selectedTipoErro.descricao
-                : null;
-
-            descErro = DescErro.Text;
-            dataCadastro = DataCadastro.Value;
-
-            if (string.IsNullOrWhiteSpace(manipulador) || string.IsNullOrWhiteSpace(fornecedor) ||
-                string.IsNullOrWhiteSpace(produto) || string.IsNullOrWhiteSpace(tipoErro) ||
-                string.IsNullOrWhiteSpace(descErro))
+            try
             {
-                MessageBox.Show("Todos os campos devem ser preenchidos!");
-                return false;
-            }
+                // Atribui valores aos parâmetros
+                manipulador = cmbManipulador.SelectedItem is ComboBoxManipulador selectedManipulador
+                    ? selectedManipulador.nome
+                    : null;
 
-            if (dataCadastro > DateTime.Now)
+                fornecedor = Fornecedor.SelectedItem is ComboBoxFornecedor selectedFornecedor
+                    ? selectedFornecedor.nome
+                    : null;
+
+                produto = Produto.SelectedItem is ComboBoxProdutos selectedProduto
+                    ? selectedProduto.descricao
+                    : null;
+
+                tipoErro = TipoErro.SelectedItem is ComboBoxTipoErro selectedTipoErro
+                    ? selectedTipoErro.descricao
+                    : null;
+
+                descErro = !string.IsNullOrWhiteSpace(DescErro.Text) ? DescErro.Text : null;
+
+                dataCadastro = DataCadastro.Value;
+
+                // Validação e conversão segura de Valor
+                if (!decimal.TryParse(valor.Text, out Valor))
+                {
+                    Valor = 0; // Define um valor padrão
+                }
+
+                // Validação e conversão segura de Quantidade
+                if (!int.TryParse(quantidade.Text, out Quantidade))
+                {
+                    Quantidade = 0; // Define um valor padrão
+                }
+
+                // Verifica se algum campo obrigatório está vazio
+                if (string.IsNullOrEmpty(manipulador) || string.IsNullOrEmpty(fornecedor) ||
+                    string.IsNullOrEmpty(produto) || string.IsNullOrEmpty(tipoErro) ||
+                    string.IsNullOrEmpty(descErro))
+                {
+                    return false; // Retorna falso se algum campo obrigatório estiver inválido
+                }
+
+                return true; // Retorna verdadeiro se todas as validações passarem
+            }
+            catch (Exception ex)
             {
-                MessageBox.Show("A data de cadastro não pode ser no futuro!");
-                return false;
+                // Log ou tratamento de erro (se necessário)
+                Console.WriteLine($"Erro ao validar entradas: {ex.Message}");
+                return false; // Retorna falso em caso de exceção
             }
-
-            return true;
         }
 
 
-
-
-
         private void InserirErro(string manipulador, string fornecedor, string produto,
-                          string tipoErro, string descErro, DateTime dataCadastro)
+                                  string tipoErro, string descErro, DateTime dataCadastro,
+                                  decimal valor, int quantidade)
         {
             string query = @"
-        INSERT INTO ERROS (IdManipuladores, IdProdutos, EmpresaId, TipoErroId, DESCRICAO, DataCadastro) 
-        VALUES (@NomeManipulador, @NomeProduto, @NomeFornecedor, @DescricaoTipoErro, @DESCRICAO, @DataCadastro);";
+                INSERT INTO ERROS (IdManipuladores, IdProdutos, EmpresaId, TipoErroId, DESCRICAO, DataCadastro, Quantidade, Valor) 
+                VALUES (@NomeManipulador, @NomeProduto, @NomeFornecedor, @DescricaoTipoErro, @DESCRICAO, @DataCadastro, @Quantidade, @Valor);";
 
             using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
@@ -256,19 +275,19 @@ namespace CadastroDeErros
 
                 using (MySqlCommand cmd = new MySqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@NomeManipulador", manipulador); // Nome do manipulador
-                    cmd.Parameters.AddWithValue("@NomeProduto", produto);        // Nome do produto
-                    cmd.Parameters.AddWithValue("@NomeFornecedor", fornecedor);  // Nome da empresa
-                    cmd.Parameters.AddWithValue("@DescricaoTipoErro", tipoErro); // Descrição do tipo de erro
+                    cmd.Parameters.AddWithValue("@NomeManipulador", manipulador);
+                    cmd.Parameters.AddWithValue("@NomeProduto", produto);
+                    cmd.Parameters.AddWithValue("@NomeFornecedor", fornecedor);
+                    cmd.Parameters.AddWithValue("@DescricaoTipoErro", tipoErro);
                     cmd.Parameters.AddWithValue("@DESCRICAO", descErro);
                     cmd.Parameters.AddWithValue("@DataCadastro", dataCadastro);
+                    cmd.Parameters.AddWithValue("@Quantidade", quantidade);
+                    cmd.Parameters.AddWithValue("@Valor", valor);
 
                     cmd.ExecuteNonQuery();
                 }
             }
         }
-
-      
     }
 
     public class ComboBoxManipulador
@@ -339,10 +358,5 @@ namespace CadastroDeErros
         {
             return descricao;
         }
- 
     }
-
-
 }
-
-
