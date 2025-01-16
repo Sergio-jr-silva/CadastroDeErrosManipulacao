@@ -131,5 +131,19 @@ namespace CadastroDeErros
             }
         }
 
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            using (var CadastroManipulador = new CadastroManipulador())
+            {
+                var resultado = CadastroManipulador.ShowDialog();
+
+               
+            }
+        }
     }
 }

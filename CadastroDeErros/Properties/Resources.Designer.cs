@@ -73,6 +73,16 @@ namespace CadastroDeErros.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap estoque1 {
+            get {
+                object obj = ResourceManager.GetObject("estoque1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap img {
             get {
                 object obj = ResourceManager.GetObject("img", resourceCulture);

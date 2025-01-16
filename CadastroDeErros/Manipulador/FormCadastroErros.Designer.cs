@@ -122,6 +122,7 @@
             DescErro.Name = "DescErro";
             DescErro.Size = new Size(515, 133);
             DescErro.TabIndex = 6;
+            DescErro.TextChanged += DescErro_TextChanged;
             // 
             // btnCadastrar
             // 

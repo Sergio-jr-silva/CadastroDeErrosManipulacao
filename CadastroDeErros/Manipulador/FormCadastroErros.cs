@@ -288,6 +288,11 @@ namespace CadastroDeErros
                 }
             }
         }
+
+        private void DescErro_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 
     public class ComboBoxManipulador
