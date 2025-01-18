@@ -2,6 +2,7 @@
 using System.Data;
 using System.Diagnostics;
 using System.Windows.Forms;
+using CadastroDeErros.Supervisor;
 using MySql.Data.MySqlClient;
 using PdfSharp.Drawing;
 using PdfSharp.Drawing.Layout;
@@ -142,7 +143,15 @@ namespace CadastroDeErros
             {
                 var resultado = CadastroManipulador.ShowDialog();
 
-               
+
+            }
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            using (var GerenciamentoErros = new GerenciamentoErros())
+                {
+                var resultado = GerenciamentoErros.ShowDialog();
             }
         }
     }
