@@ -9,7 +9,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Supervisor\MonitoramentoDesempenho.cs" />
+    <Compile Remove="Supervisor\MonitoramentoDesempenho.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Supervisor\MonitoramentoDesempenho.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="itext7" Version="9.0.0" />
+    <PackageReference Include="Maikebing.System.Windows.Forms.DataVisualization" Version="5.0.1" />
     <PackageReference Include="MySql.Data" Version="9.1.0" />
     <PackageReference Include="PDFsharp" Version="6.1.1" />
   </ItemGroup>

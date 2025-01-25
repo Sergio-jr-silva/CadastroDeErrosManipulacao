@@ -91,8 +91,7 @@
             usuario.Name = "usuario";
             usuario.Size = new Size(237, 27);
             usuario.TabIndex = 1;
-          
-            // 
+           
             // Login
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);

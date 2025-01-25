@@ -79,8 +79,8 @@ namespace CadastroDeErros
 
                 // Desenhar cabeçalho da tabela
                 gfx.DrawRectangle(XPens.Black, startX, startY, columnWidth * 4, rowHeight);
-                gfx.DrawString("Código do Produto", columnFont, XBrushes.Black, new XPoint(startX + 5, startY + 15));
-                gfx.DrawString("Descrição", columnFont, XBrushes.Black, new XPoint(startX + columnWidth + 5, startY + 15));
+                gfx.DrawString("Produto", columnFont, XBrushes.Black, new XPoint(startX + 5, startY + 15));
+                gfx.DrawString("Erro", columnFont, XBrushes.Black, new XPoint(startX + columnWidth + 5, startY + 15));
                 gfx.DrawString("Manipulador", columnFont, XBrushes.Black, new XPoint(startX + columnWidth * 2 + 5, startY + 15));
                 gfx.DrawString("Data do Registro", columnFont, XBrushes.Black, new XPoint(startX + columnWidth * 3 + 5, startY + 15));
 
@@ -150,9 +150,29 @@ namespace CadastroDeErros
         private void pictureBox2_Click(object sender, EventArgs e)
         {
             using (var GerenciamentoErros = new GerenciamentoErros())
-                {
+            {
                 var resultado = GerenciamentoErros.ShowDialog();
             }
         }
+
+        private void pictureBox5_Click(object sender, EventArgs e)
+        {
+            using (var MDesempenho = new MDesempenho())
+            {
+                var resultado = MDesempenho.ShowDialog();
+            }
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            // Cria e exibe a tela de login
+            var login = new Login();
+            login.ShowDialog();
+
+            // Fecha a tela atual
+            this.Close();
+        }
+
+
     }
 }

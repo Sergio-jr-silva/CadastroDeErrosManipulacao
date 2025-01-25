@@ -11,6 +11,10 @@ namespace CadastroDeErros
         public Login()
         {
             InitializeComponent();
+
+            // Adicionar evento para capturar tecla Enter
+            this.KeyPreview = true; // Habilitar o KeyDown para o formulário inteiro
+            this.KeyDown += Login_KeyDown;
         }
 
         private void Form2_Load(object sender, EventArgs e)
@@ -41,5 +45,16 @@ namespace CadastroDeErros
             }
         }
 
+     
+
+        private void Login_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                // Simula o comportamento da tecla Tab
+                this.SelectNextControl(this.ActiveControl, true, true, true, true);
+                e.Handled = true; // Impede que o Enter faça outra ação
+            }
+        }
     }
 }
