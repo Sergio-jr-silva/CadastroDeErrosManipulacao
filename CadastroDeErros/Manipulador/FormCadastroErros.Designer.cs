@@ -174,6 +174,7 @@
             Produto.Name = "Produto";
             Produto.Size = new Size(183, 28);
             Produto.TabIndex = 3;
+            Produto.SelectedIndexChanged += Produto_SelectedIndexChanged;
             // 
             // DataCadastro
             // 

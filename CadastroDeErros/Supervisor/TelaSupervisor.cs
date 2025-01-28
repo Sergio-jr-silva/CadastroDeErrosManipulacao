@@ -165,12 +165,7 @@ namespace CadastroDeErros
 
         private void pictureBox4_Click(object sender, EventArgs e)
         {
-            // Cria e exibe a tela de login
-            var login = new Login();
-            login.ShowDialog();
-
-            // Fecha a tela atual
-            this.Close();
+          
         }
 
 

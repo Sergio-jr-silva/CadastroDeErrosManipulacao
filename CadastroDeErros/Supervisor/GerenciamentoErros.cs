@@ -64,11 +64,16 @@ namespace CadastroDeErros.Supervisor
         {
             if (e.RowIndex < 0) return; // Ignora cabeçalhos
 
-            // Identifica a coluna clicada
             if (TbErros.Columns[e.ColumnIndex].Name == "Edit")
             {
-               /* int erroID = Convert.ToInt32(TbErros.Rows[e.RowIndex].Cells["ErroID"].Value);
-                EditError(erroID); */
+                int errorId = Convert.ToInt32(TbErros.Rows[e.RowIndex].Cells["Id"].Value);
+                using (editar editForm = new editar(errorId))
+                {
+                    if (editForm.ShowDialog() == DialogResult.OK)
+                    {
+                        LoadErrors(); // Recarrega os dados após salvar
+                    }
+                }
             }
             else if (TbErros.Columns[e.ColumnIndex].Name == "Delete")
             {
@@ -76,6 +81,7 @@ namespace CadastroDeErros.Supervisor
                 DeleteError(Id);
             }
         }
+
 
         private void DeleteError(int Id)
         {

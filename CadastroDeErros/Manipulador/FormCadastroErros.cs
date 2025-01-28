@@ -293,6 +293,11 @@ namespace CadastroDeErros
         {
 
         }
+
+        private void Produto_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 
     public class ComboBoxManipulador
