@@ -47,6 +47,8 @@
             quantidade = new TextBox();
             label = new Label();
             valor = new TextBox();
+            labelCor = new Label();
+            cor = new TextBox();
             SuspendLayout();
             // 
             // label1
@@ -109,7 +111,7 @@
             // 
             desc.AutoSize = true;
             desc.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            desc.Location = new Point(109, 243);
+            desc.Location = new Point(71, 319);
             desc.Name = "desc";
             desc.Size = new Size(171, 25);
             desc.TabIndex = 7;
@@ -117,10 +119,10 @@
             // 
             // DescErro
             // 
-            DescErro.Location = new Point(109, 283);
+            DescErro.Location = new Point(71, 359);
             DescErro.Multiline = true;
             DescErro.Name = "DescErro";
-            DescErro.Size = new Size(515, 133);
+            DescErro.Size = new Size(553, 56);
             DescErro.TabIndex = 6;
             DescErro.TextChanged += DescErro_TextChanged;
             // 
@@ -187,7 +189,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI Emoji", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.Location = new Point(38, 185);
+            label5.Location = new Point(10, 185);
             label5.Name = "label5";
             label5.Size = new Size(113, 24);
             label5.TabIndex = 13;
@@ -195,7 +197,7 @@
             // 
             // quantidade
             // 
-            quantidade.Location = new Point(157, 186);
+            quantidade.Location = new Point(129, 186);
             quantidade.Name = "quantidade";
             quantidade.Size = new Size(125, 27);
             quantidade.TabIndex = 15;
@@ -204,7 +206,7 @@
             // 
             label.AutoSize = true;
             label.Font = new Font("Segoe UI Emoji", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label.Location = new Point(353, 189);
+            label.Location = new Point(289, 186);
             label.Name = "label";
             label.Size = new Size(85, 24);
             label.TabIndex = 14;
@@ -212,10 +214,28 @@
             // 
             // valor
             // 
-            valor.Location = new Point(444, 189);
+            valor.Location = new Point(380, 186);
             valor.Name = "valor";
             valor.Size = new Size(125, 27);
             valor.TabIndex = 16;
+            // 
+            // labelCor
+            // 
+            labelCor.AutoSize = true;
+            labelCor.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labelCor.Location = new Point(26, 249);
+            labelCor.Name = "labelCor";
+            labelCor.Size = new Size(119, 25);
+            labelCor.TabIndex = 17;
+            labelCor.Text = "Nome da cor";
+            // 
+            // cor
+            // 
+            cor.Location = new Point(152, 250);
+            cor.Name = "cor";
+            cor.Size = new Size(257, 27);
+            cor.TabIndex = 18;
+            cor.TextChanged += cor_TextChanged;
             // 
             // FormCadastroErros
             // 
@@ -223,6 +243,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(224, 224, 224);
             ClientSize = new Size(753, 512);
+            Controls.Add(cor);
+            Controls.Add(labelCor);
             Controls.Add(valor);
             Controls.Add(quantidade);
             Controls.Add(label);
@@ -273,5 +295,7 @@
         private TextBox quantidade;
         private Label label;
         private TextBox valor;
+        private Label labelCor;
+        private TextBox cor;
     }
 }

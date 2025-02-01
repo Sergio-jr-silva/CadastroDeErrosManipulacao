@@ -22,6 +22,7 @@ namespace CadastroDeErros
             DescErro.Text = string.Empty;
             quantidade.Text = string.Empty;
             valor.Text = string.Empty;
+            cor.Text = string.Empty;
             DataCadastro.Value = DateTime.Now;
             Produto.Items.Clear();
         }
@@ -176,12 +177,12 @@ namespace CadastroDeErros
             try
             {
                 if (!ValidarEntradas(out string manipulador, out string fornecedor, out string produto,
-                                     out string tipoErro, out string descErro, out DateTime dataCadastro, out decimal valor, out int quantidade))
+                                     out string tipoErro, out string descErro, out DateTime dataCadastro, out decimal valor, out int quantidade, out string cor))
                 {
                     return;
                 }
 
-                InserirErro(manipulador, fornecedor, produto, tipoErro, descErro, dataCadastro, valor, quantidade);
+                InserirErro(manipulador, fornecedor, produto, tipoErro, descErro, dataCadastro, valor, quantidade,cor);
 
                 MessageBox.Show("Registro inserido com sucesso!");
                 ResetarFormulario();
@@ -195,7 +196,7 @@ namespace CadastroDeErros
 
         private bool ValidarEntradas(out string manipulador, out string fornecedor, out string produto,
                               out string tipoErro, out string descErro, out DateTime dataCadastro,
-                              out decimal Valor, out int Quantidade)
+                              out decimal Valor, out int Quantidade, out string Cor)
         {
             // Inicializa os parâmetros out com valores padrão
             manipulador = null;
@@ -206,6 +207,7 @@ namespace CadastroDeErros
             dataCadastro = DateTime.MinValue;
             Valor = 0;
             Quantidade = 0;
+            Cor = null;
 
             try
             {
@@ -227,8 +229,10 @@ namespace CadastroDeErros
                     : null;
 
                 descErro = !string.IsNullOrWhiteSpace(DescErro.Text) ? DescErro.Text : null;
-
+                
                 dataCadastro = DataCadastro.Value;
+
+                Cor = !string.IsNullOrWhiteSpace(cor.Text) ? cor.Text : null;
 
                 // Validação e conversão segura de Valor
                 if (!decimal.TryParse(valor.Text, out Valor))
@@ -263,11 +267,11 @@ namespace CadastroDeErros
 
         private void InserirErro(string manipulador, string fornecedor, string produto,
                                   string tipoErro, string descErro, DateTime dataCadastro,
-                                  decimal valor, int quantidade)
+                                  decimal valor, int quantidade, string cor)
         {
             string query = @"
-                INSERT INTO ERROS (IdManipuladores, IdProdutos, EmpresaId, TipoErroId, DESCRICAO, DataCadastro, Quantidade, Valor) 
-                VALUES (@NomeManipulador, @NomeProduto, @NomeFornecedor, @DescricaoTipoErro, @DESCRICAO, @DataCadastro, @Quantidade, @Valor);";
+                INSERT INTO ERROS (IdManipuladores, IdProdutos, EmpresaId, TipoErroId, DESCRICAO, DataCadastro, Quantidade, Valor, cor) 
+                VALUES (@NomeManipulador, @NomeProduto, @NomeFornecedor, @DescricaoTipoErro, @DESCRICAO, @DataCadastro, @Quantidade, @Valor, @cor);";
 
             using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
@@ -283,6 +287,7 @@ namespace CadastroDeErros
                     cmd.Parameters.AddWithValue("@DataCadastro", dataCadastro);
                     cmd.Parameters.AddWithValue("@Quantidade", quantidade);
                     cmd.Parameters.AddWithValue("@Valor", valor);
+                    cmd.Parameters.AddWithValue("@cor", cor);
 
                     cmd.ExecuteNonQuery();
                 }
@@ -295,6 +300,11 @@ namespace CadastroDeErros
         }
 
         private void Produto_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cor_TextChanged(object sender, EventArgs e)
         {
 
         }
