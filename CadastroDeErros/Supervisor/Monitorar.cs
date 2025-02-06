@@ -16,52 +16,61 @@ namespace CadastroDeErros.Supervisor
             CarregarDados();
         }
 
-        /// <summary>
-        /// Método para carregar os dados do banco de dados e exibir no gráfico.
-        /// </summary>
         private void CarregarDados()
         {
             using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
-                conn.Open();
-                string query = "SELECT Quantidade, COUNT(*) AS total_erros FROM erros GROUP BY Erros";
-                MySqlCommand cmd = new MySqlCommand(query, conn);
-                MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                adapter.Fill(dt);
-
-                int totalErrosSistema = 0;
-                foreach (DataRow row in dt.Rows)
+                try
                 {
-                    totalErrosSistema += Convert.ToInt32(row["total_erros"]);
+                    conn.Open();
+
+                    string query = "SELECT idmanipuladores, COUNT(*) AS total_erros FROM ERROS GROUP BY idmanipuladores;";
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+
+                    if (dt.Rows.Count == 0)
+                    {
+                        MessageBox.Show("Nenhum dado encontrado no banco.");
+                        return;
+                    }
+
+                    int totalErrosSistema = 0;
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        totalErrosSistema += Convert.ToInt32(row["total_erros"]);
+                    }
+
+                    lblTotalErros.Text = $"Total de erros no sistema: {totalErrosSistema}";
+
+                    chartErros.Series.Clear();
+
+                    Series seriesErros = new Series("Total de Erros")
+                    {
+                        ChartType = SeriesChartType.Pie
+                    };
+                    chartErros.Series.Add(seriesErros);
+
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        string manipulador = row["idmanipuladores"].ToString();
+                        int totalErros = Convert.ToInt32(row["total_erros"]);
+                        double percentual = (totalErros / (double)totalErrosSistema) * 100;
+
+                        DataPoint dpErros = new DataPoint();
+                        dpErros.SetValueXY(manipulador, totalErros);
+                        dpErros.Label = $"{manipulador}: {percentual:F2}%";
+                        seriesErros.Points.Add(dpErros);
+                    }
                 }
-
-                chartErros.Series.Clear();
-
-                // Série para Total de Erros
-                Series seriesErros = new Series("Total de Erros");
-                seriesErros.ChartType = SeriesChartType.Column;
-                chartErros.Series.Add(seriesErros);
-
-                // Série para Percentual de Erros
-                Series seriesPercentual = new Series("Percentual de Erros");
-                seriesPercentual.ChartType = SeriesChartType.Line;
-                seriesPercentual.YAxisType = AxisType.Secondary;
-                chartErros.Series.Add(seriesPercentual);
-
-                foreach (DataRow row in dt.Rows)
+                catch (Exception ex)
                 {
-                    string manipulador = row["manipulador"].ToString();
-                    int totalErros = Convert.ToInt32(row["total_erros"]);
-                    double percentual = (totalErros / (double)totalErrosSistema) * 100;
-
-                    seriesErros.Points.AddXY(manipulador, totalErros);
-                    seriesPercentual.Points.AddXY(manipulador, percentual);
-
-                    seriesErros.Points[seriesErros.Points.Count - 1].Label = $"{totalErros}";
-                    seriesPercentual.Points[seriesPercentual.Points.Count - 1].Label = $"{percentual:F2}%";
+                    MessageBox.Show($"Erro ao carregar dados: {ex.Message}");
                 }
             }
         }
+
+        private void chartErros_Click(object sender, EventArgs e) { }
     }
 }

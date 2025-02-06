@@ -135,7 +135,7 @@ namespace CadastroDeErros
 
         private void pictureBox5_Click(object sender, EventArgs e)
         {
-            using (var monitorar = new Form())
+            using (var monitorar = new Monitorar())
             {
                 monitorar.ShowDialog();
             }

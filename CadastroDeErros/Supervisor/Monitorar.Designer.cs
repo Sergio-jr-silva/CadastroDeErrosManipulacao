@@ -6,7 +6,6 @@ namespace CadastroDeErros.Supervisor
     partial class Monitorar
     {
         private System.ComponentModel.IContainer components = null;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chartErros;
 
         /// <summary>
         /// Limpa os componentes usados.
@@ -25,39 +24,55 @@ namespace CadastroDeErros.Supervisor
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            this.chartErros = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            ((System.ComponentModel.ISupportInitialize)(this.chartErros)).BeginInit();
-            this.SuspendLayout();
-
-            // Configuração do ChartArea
-            chartArea.Name = "ChartArea1";
-            chartArea.AxisY.Title = "Total de Erros";
-            chartArea.AxisY2.Title = "Percentual (%)";
-            chartArea.AxisY2.Enabled = AxisEnabled.True;
-            this.chartErros.ChartAreas.Add(chartArea);
-
-            // Configuração da Legenda
-            legend.Name = "Legenda";
-            this.chartErros.Legends.Add(legend);
-
-            // Configuração do Gráfico
-            this.chartErros.Location = new System.Drawing.Point(10, 10);
-            this.chartErros.Name = "chartErros";
-            this.chartErros.Size = new System.Drawing.Size(780, 400);
-            this.chartErros.TabIndex = 0;
-            this.chartErros.Text = "Gráfico de Erros";
-
-            // Configuração do Formulário
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.chartErros);
-            this.Name = "Monitorar";
-            this.Text = "Monitoramento de Erros";
-            ((System.ComponentModel.ISupportInitialize)(this.chartErros)).EndInit();
-            this.ResumeLayout(false);
+            ChartArea chartArea1 = new ChartArea();
+            Legend legend1 = new Legend();
+            Series series1 = new Series();
+            chartErros = new Chart();
+            lblTotalErros = new Label();
+            ((System.ComponentModel.ISupportInitialize)chartErros).BeginInit();
+            SuspendLayout();
+            // 
+            // chartErros
+            // 
+            chartArea1.Name = "ChartArea1";
+            chartErros.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            chartErros.Legends.Add(legend1);
+            chartErros.Location = new Point(18, 18);
+            chartErros.Name = "chartErros";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            chartErros.Series.Add(series1);
+            chartErros.Size = new Size(966, 421);
+            chartErros.TabIndex = 1;
+            chartErros.Text = "chart1";
+            // 
+            // lblTotalErros
+            // 
+            lblTotalErros.AutoSize = true;
+            lblTotalErros.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTotalErros.Location = new Point(59, 473);
+            lblTotalErros.Name = "lblTotalErros";
+            lblTotalErros.Size = new Size(66, 28);
+            lblTotalErros.TabIndex = 3;
+            lblTotalErros.Text = "label2";
+            // 
+            // Monitorar
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1056, 617);
+            Controls.Add(lblTotalErros);
+            Controls.Add(chartErros);
+            Name = "Monitorar";
+            Text = "Monitoramento de Erros";
+            ((System.ComponentModel.ISupportInitialize)chartErros).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
+
+        private Chart chartErros;
+        private Label lblTotalErros;
     }
 }
