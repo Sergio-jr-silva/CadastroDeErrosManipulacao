@@ -77,7 +77,7 @@
             pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox3.TabIndex = 4;
             pictureBox3.TabStop = false;
-         
+            pictureBox3.Click += pictureBox3_Click;
             // 
             // label3
             // 
@@ -87,7 +87,6 @@
             label3.Size = new Size(157, 20);
             label3.TabIndex = 5;
             label3.Text = "Cadastro Manipulador";
-            
             // 
             // pictureBox4
             // 
@@ -98,7 +97,6 @@
             pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox4.TabIndex = 6;
             pictureBox4.TabStop = false;
-           
             // 
             // label4
             // 
@@ -128,7 +126,7 @@
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox2.TabIndex = 9;
             pictureBox2.TabStop = false;
-            
+            pictureBox2.Click += pictureBox2_Click;
             // 
             // label2
             // 
@@ -148,7 +146,7 @@
             pictureBox5.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox5.TabIndex = 11;
             pictureBox5.TabStop = false;
-            
+            pictureBox5.Click += pictureBox5_Click;
             // 
             // label5
             // 

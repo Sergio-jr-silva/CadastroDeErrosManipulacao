@@ -10,10 +10,10 @@ namespace CadastroDeErros.Supervisor
         private int ErrorId;
         private string ConnectionString = "Server=localhost;Database=ControleErros;Uid=root;Pwd=3477;";
 
-        public editar(int errorId)
+        public editar(int ErrorId)
         {
             InitializeComponent();
-            ErrorId = errorId;
+            this.ErrorId = ErrorId;
             LoadProducts();
             LoadErrorDetails();
             LoadEmpresas();
@@ -160,7 +160,7 @@ namespace CadastroDeErros.Supervisor
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void btnsalvar_Click(object sender, EventArgs e)
@@ -209,6 +209,11 @@ namespace CadastroDeErros.Supervisor
             {
                 MessageBox.Show($"Erro ao salvar os dados: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void editar_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

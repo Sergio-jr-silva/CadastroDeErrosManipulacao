@@ -12,6 +12,8 @@ namespace CadastroDeErros
 {
     public partial class TelaSupervisor : Form
     {
+        private const string ConnectionString = "Server=localhost;Database=ControleErros;User Id=root;Password=3477;";
+
         public TelaSupervisor()
         {
             InitializeComponent();
@@ -19,7 +21,7 @@ namespace CadastroDeErros
 
         private void TelaSupervisor_Load(object sender, EventArgs e)
         {
-            // Qualquer inicialização ao carregar a tela
+            // Inicialização ao carregar a tela
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -107,6 +109,35 @@ namespace CadastroDeErros
             catch (Exception ex)
             {
                 MessageBox.Show($"Erro: {ex.Message}");
+            }
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            using (var cadastroManipulador = new CadastroManipulador())
+            {
+                cadastroManipulador.ShowDialog();
+            }
+        }
+
+        
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            using (var GerenciarErros = new GerenciamentoErros()) { 
+            
+                GerenciarErros.ShowDialog();
+
+                }
+           
+        }
+
+
+        private void pictureBox5_Click(object sender, EventArgs e)
+        {
+            using (var monitorar = new Form())
+            {
+                monitorar.ShowDialog();
             }
         }
     }

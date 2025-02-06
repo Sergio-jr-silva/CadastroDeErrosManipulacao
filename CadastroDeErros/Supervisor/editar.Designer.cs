@@ -114,6 +114,7 @@
             Controls.Add(Produto);
             Name = "editar";
             Text = "editar";
+            Load += editar_Load;
             ResumeLayout(false);
             PerformLayout();
         }
