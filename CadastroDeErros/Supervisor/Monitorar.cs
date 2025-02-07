@@ -14,6 +14,7 @@ namespace CadastroDeErros.Supervisor
         {
             InitializeComponent();
             CarregarDados();
+            CarregarDadosDesistencia();
         }
 
         private void CarregarDados()
@@ -67,6 +68,61 @@ namespace CadastroDeErros.Supervisor
                 catch (Exception ex)
                 {
                     MessageBox.Show($"Erro ao carregar dados: {ex.Message}");
+                }
+            }
+        }
+
+        private void CarregarDadosDesistencia()
+        {
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    conn.Open();
+
+                    string query = "\r\nSELECT EmpresaId, COUNT(*) AS total_desistencias FROM Erros WHERE TipoErroId = 'Desistencia' GROUP BY EmpresaId;";
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+
+                    if (dt.Rows.Count == 0)
+                    {
+                        MessageBox.Show("Nenhum dado de desistências encontrado no banco.");
+                        return;
+                    }
+
+                    int totalDesistencias = 0;
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        totalDesistencias += Convert.ToInt32(row["total_desistencias"]);
+                    }
+
+                    lblTotalDesistencias.Text = $"Total de desistências: {totalDesistencias}";
+
+                    chartDesistenciasProdutos.Series.Clear();
+
+                    Series seriesDesistencias = new Series("Total de Desistências")
+                    {
+                        ChartType = SeriesChartType.Pie
+                    };
+                    chartDesistenciasProdutos.Series.Add(seriesDesistencias);
+
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        string marca = row["EmpresaId"].ToString();
+                        int totalDesistenciasMarca = Convert.ToInt32(row["total_desistencias"]);
+                        double percentual = (totalDesistenciasMarca / (double)totalDesistencias) * 100;
+
+                        DataPoint dpDesistencias = new DataPoint();
+                        dpDesistencias.SetValueXY(marca, totalDesistenciasMarca);
+                        dpDesistencias.Label = $"{marca}: {percentual:F2}%";
+                        seriesDesistencias.Points.Add(dpDesistencias);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Erro ao carregar dados de desistências: {ex.Message}");
                 }
             }
         }
