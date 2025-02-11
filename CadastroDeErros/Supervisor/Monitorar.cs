@@ -4,13 +4,14 @@ using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.Windows.Forms.DataVisualization.Charting;
 
-namespace CadastroDeErros.Supervisor
-{
+namespace CadastroDeErros.Supervisor;
+
     public partial class Monitorar : Form
     {
-        private string connectionString = "server=localhost;database=ControleErros;user=root;password=3477";
+    private readonly string connectionString = "Server=junction.proxy.rlwy.net;Port=19537;Database=railway;User Id=root;Password=AQmzEpJAXIqpYUogVjawuxNxKQOPBAxc;SslMode=Required;";
 
-        public Monitorar()
+
+    public Monitorar()
         {
             InitializeComponent();
             CarregarDados();
@@ -25,8 +26,9 @@ namespace CadastroDeErros.Supervisor
                 {
                     conn.Open();
 
-                    string query = "SELECT idmanipuladores, COUNT(*) AS total_erros FROM ERROS GROUP BY idmanipuladores;";
-                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                string query = "SELECT idmanipuladores, COUNT(*) AS total_erros, SUM(Valor) AS total_valor FROM Erros GROUP BY idmanipuladores;";
+
+                MySqlCommand cmd = new MySqlCommand(query, conn);
                     MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
                     adapter.Fill(dt);
@@ -37,15 +39,20 @@ namespace CadastroDeErros.Supervisor
                         return;
                     }
 
-                    int totalErrosSistema = 0;
+                decimal totalValorErros = 0;
+                int totalErrosSistema = 0;
                     foreach (DataRow row in dt.Rows)
                     {
                         totalErrosSistema += Convert.ToInt32(row["total_erros"]);
-                    }
+                    totalValorErros += Convert.ToDecimal(row["total_valor"]);
+                }
 
                     lblTotalErros.Text = $"Total de erros no sistema: {totalErrosSistema}";
+                    Valor.Text  = $"Valor total dos erros: R$ {totalValorErros:F2}";
 
-                    chartErros.Series.Clear();
+
+
+                chartErros.Series.Clear();
 
                     Series seriesErros = new Series("Total de Erros")
                     {
@@ -80,7 +87,7 @@ namespace CadastroDeErros.Supervisor
                 {
                     conn.Open();
 
-                    string query = "\r\nSELECT EmpresaId, COUNT(*) AS total_desistencias FROM Erros WHERE TipoErroId = 'Desistencia' GROUP BY EmpresaId;";
+                    string query = "SELECT EmpresaId, COUNT(*) AS total_desistencias FROM Erros WHERE TipoErroId = 'Desistencia' GROUP BY EmpresaId;";
                     MySqlCommand cmd = new MySqlCommand(query, conn);
                     MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
@@ -129,4 +136,4 @@ namespace CadastroDeErros.Supervisor
 
         private void chartErros_Click(object sender, EventArgs e) { }
     }
-}
+

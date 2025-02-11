@@ -15,8 +15,9 @@ namespace CadastroDeErros.Supervisor
 
         private void LoadErrors()
         {
-            string connectionString = "Server=localhost;Database=ControleErros;Uid=root;Pwd=3477;";
-            string query = "SELECT Id, IdProdutos, EmpresaId, Descricao, DataCadastro FROM Erros";
+         string connectionString = "Server=junction.proxy.rlwy.net;Port=19537;Database=railway;User Id=root;Password=AQmzEpJAXIqpYUogVjawuxNxKQOPBAxc;SslMode=Required;";
+
+        string query = "SELECT Id, IdProdutos, EmpresaId, Descricao, DataCadastro FROM Erros";
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             using (MySqlCommand command = new MySqlCommand(query, connection))

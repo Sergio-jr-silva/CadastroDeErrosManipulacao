@@ -57,9 +57,10 @@
             label1.Font = new Font("Segoe UI Emoji", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.Location = new Point(24, 60);
             label1.Name = "label1";
-            label1.Size = new Size(122, 24);
+            label1.Size = new Size(121, 24);
             label1.TabIndex = 0;
-            label1.Text = "Manipulador";
+            label1.Text = "Colaborador";
+            label1.Click += label1_Click;
             // 
             // label2
             // 
@@ -87,6 +88,7 @@
             cmbManipulador.Name = "cmbManipulador";
             cmbManipulador.Size = new Size(217, 28);
             cmbManipulador.TabIndex = 0;
+            cmbManipulador.SelectedIndexChanged += cmbManipulador_SelectedIndexChanged;
             // 
             // TipoErro
             // 
@@ -96,6 +98,7 @@
             TipoErro.Name = "TipoErro";
             TipoErro.Size = new Size(111, 28);
             TipoErro.TabIndex = 5;
+            TipoErro.SelectedIndexChanged += TipoErro_SelectedIndexChanged;
             // 
             // label4
             // 

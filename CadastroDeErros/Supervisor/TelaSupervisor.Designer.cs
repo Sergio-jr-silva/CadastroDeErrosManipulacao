@@ -84,9 +84,9 @@
             label3.AutoSize = true;
             label3.Location = new Point(223, 158);
             label3.Name = "label3";
-            label3.Size = new Size(157, 20);
+            label3.Size = new Size(156, 20);
             label3.TabIndex = 5;
-            label3.Text = "Cadastro Manipulador";
+            label3.Text = "Cadastro Colaborador";
             // 
             // pictureBox4
             // 

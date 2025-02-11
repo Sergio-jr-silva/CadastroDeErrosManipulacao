@@ -6,7 +6,7 @@ namespace CadastroDeErros
 {
     public partial class FormCadastroErros : Form
     {
-        private readonly string connectionString = "server=localhost;port=3306;database=ControleErros;user=root;password=3477;";
+        private readonly string connectionString = "Server=junction.proxy.rlwy.net;Port=19537;Database=railway;User Id=root;Password=AQmzEpJAXIqpYUogVjawuxNxKQOPBAxc;SslMode=Required;";
 
         public FormCadastroErros()
         {
@@ -69,7 +69,7 @@ namespace CadastroDeErros
 
         private void CarregarFornecedor()
         {
-            string query = "SELECT EmpresaId, NomeEmpresa FROM EMPRESAS;";
+            string query = "SELECT EmpresaId, NomeEmpresa FROM Empresas;";
 
             using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
@@ -131,7 +131,7 @@ namespace CadastroDeErros
 
         private void CarregarProdutos(string empresaId)
         {
-            string query = "SELECT IdProdutos, DESCRICAO FROM PRODUTOS WHERE EmpresaId = @EmpresaId;";
+            string query = "SELECT IdProdutos, DESCRICAO FROM Produtos WHERE EmpresaId = @EmpresaId;";
 
             using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
@@ -182,7 +182,7 @@ namespace CadastroDeErros
                     return;
                 }
 
-                InserirErro(manipulador, fornecedor, produto, tipoErro, descErro, dataCadastro, valor, quantidade,cor);
+                InserirErro(manipulador, fornecedor, produto, tipoErro, descErro, dataCadastro, valor, quantidade, cor);
 
                 MessageBox.Show("Registro inserido com sucesso!");
                 ResetarFormulario();
@@ -229,7 +229,7 @@ namespace CadastroDeErros
                     : null;
 
                 descErro = !string.IsNullOrWhiteSpace(DescErro.Text) ? DescErro.Text : null;
-                
+
                 dataCadastro = DataCadastro.Value;
 
                 Cor = !string.IsNullOrWhiteSpace(cor.Text) ? cor.Text : null;
@@ -270,7 +270,7 @@ namespace CadastroDeErros
                                   decimal valor, int quantidade, string cor)
         {
             string query = @"
-                INSERT INTO ERROS (IdManipuladores, IdProdutos, EmpresaId, TipoErroId, DESCRICAO, DataCadastro, Quantidade, Valor, cor) 
+                INSERT INTO Erros (IdManipuladores, IdProdutos, EmpresaId, TipoErroId, DESCRICAO, DataCadastro, Quantidade, Valor, cor) 
                 VALUES (@NomeManipulador, @NomeProduto, @NomeFornecedor, @DescricaoTipoErro, @DESCRICAO, @DataCadastro, @Quantidade, @Valor, @cor);";
 
             using (MySqlConnection conn = new MySqlConnection(connectionString))
@@ -305,6 +305,21 @@ namespace CadastroDeErros
         }
 
         private void cor_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbManipulador_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TipoErro_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

@@ -91,6 +91,7 @@
             cmbProduto.Name = "cmbProduto";
             cmbProduto.Size = new Size(359, 28);
             cmbProduto.TabIndex = 7;
+            cmbProduto.SelectedIndexChanged += cmbProduto_SelectedIndexChanged_1;
             // 
             // cmbEmpresa
             // 

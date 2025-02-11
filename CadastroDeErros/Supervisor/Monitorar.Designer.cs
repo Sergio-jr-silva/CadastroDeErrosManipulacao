@@ -34,6 +34,7 @@ namespace CadastroDeErros.Supervisor
             lblTotalErros = new Label();
             chartDesistenciasProdutos = new Chart();
             lblTotalDesistencias = new Label();
+            Valor = new Label();
             ((System.ComponentModel.ISupportInitialize)chartErros).BeginInit();
             ((System.ComponentModel.ISupportInitialize)chartDesistenciasProdutos).BeginInit();
             SuspendLayout();
@@ -90,11 +91,21 @@ namespace CadastroDeErros.Supervisor
             lblTotalDesistencias.TabIndex = 5;
             lblTotalDesistencias.Text = "label1";
             // 
+            // Valor
+            // 
+            Valor.AutoSize = true;
+            Valor.Location = new Point(889, 675);
+            Valor.Name = "Valor";
+            Valor.Size = new Size(43, 20);
+            Valor.TabIndex = 6;
+            Valor.Text = "Valor";
+            // 
             // Monitorar
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1206, 757);
+            Controls.Add(Valor);
             Controls.Add(lblTotalDesistencias);
             Controls.Add(chartDesistenciasProdutos);
             Controls.Add(lblTotalErros);
@@ -111,5 +122,6 @@ namespace CadastroDeErros.Supervisor
         private Label lblTotalErros;
         private Chart chartDesistenciasProdutos;
         private Label lblTotalDesistencias;
+        private Label Valor;
     }
 }

@@ -8,7 +8,8 @@ namespace CadastroDeErros.Supervisor
     public partial class editar : Form
     {
         private int ErrorId;
-        private string ConnectionString = "Server=localhost;Database=ControleErros;Uid=root;Pwd=3477;";
+        private readonly string ConnectionString = "Server=junction.proxy.rlwy.net;Port=19537;Database=railway;User Id=root;Password=AQmzEpJAXIqpYUogVjawuxNxKQOPBAxc;SslMode=Required;";
+
 
         public editar(int ErrorId)
         {
@@ -212,6 +213,11 @@ namespace CadastroDeErros.Supervisor
         }
 
         private void editar_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbProduto_SelectedIndexChanged_1(object sender, EventArgs e)
         {
 
         }

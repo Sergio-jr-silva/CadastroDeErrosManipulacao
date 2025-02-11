@@ -36,8 +36,9 @@ namespace CadastroDeErros
             try
             {
                 // String de conexão com o banco de dados
-                string connectionString = "Server=localhost;Database=ControleErros;User Id=root;Password=3477;";
-                string query = @"INSERT INTO Manipuladores (matricula, nome) VALUES (@matricula, @nome)";
+          string connectionString = "Server=junction.proxy.rlwy.net;Port=19537;Database=railway;User Id=root;Password=AQmzEpJAXIqpYUogVjawuxNxKQOPBAxc;SslMode=Required;";
+
+        string query = @"INSERT INTO Manipuladores (matricula, nome) VALUES (@matricula, @nome)";
 
                 // Conexão com o banco de dados
                 using (MySqlConnection conn = new MySqlConnection(connectionString))
