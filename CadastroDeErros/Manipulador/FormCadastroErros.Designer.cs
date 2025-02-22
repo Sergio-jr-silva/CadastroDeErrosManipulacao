@@ -103,12 +103,13 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(567, 118);
+            label4.Font = new Font("Segoe UI", 8.8F, FontStyle.Bold);
+            label4.Location = new Point(554, 121);
             label4.Name = "label4";
-            label4.Size = new Size(57, 25);
+            label4.Size = new Size(67, 20);
             label4.TabIndex = 6;
-            label4.Text = "Erro: ";
+            label4.Text = "Motivo: ";
+            label4.Click += label4_Click;
             // 
             // desc
             // 
@@ -272,7 +273,7 @@
             MinimizeBox = false;
             Name = "FormCadastroErros";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Cadastro de erros Manipulação";
+            Text = "Cadastro de Tintas Manipulação";
             Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();

@@ -67,7 +67,7 @@ namespace CadastroDeErros
                 double pageWidth = page.Width - 2 * margin;
                 double columnWidth = pageWidth / 7;
 
-                string[] headers = { "Produto", "Cor", "Descrição", "Colaborador", "Valor", "Tipo Erro", "Data do Registro" };
+                string[] headers = { "Produto", "Cor", "Situação", "Colaborador", "Valor", "Motivo", "Data do Registro" };
 
                 // Desenhando cabeçalho
                 for (int i = 0; i < headers.Length; i++)

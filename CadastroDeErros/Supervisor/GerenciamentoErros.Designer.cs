@@ -53,7 +53,7 @@
             ClientSize = new Size(933, 664);
             Controls.Add(TbErros);
             Name = "GerenciamentoErros";
-            Text = "Gerenciamento De Erros";
+            Text = "Gerenciamento De Tintas";
             ((System.ComponentModel.ISupportInitialize)TbErros).EndInit();
             ResumeLayout(false);
         }

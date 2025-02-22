@@ -62,9 +62,9 @@
             label3.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.Location = new Point(247, 33);
             label3.Name = "label3";
-            label3.Size = new Size(332, 46);
+            label3.Size = new Size(344, 46);
             label3.TabIndex = 2;
-            label3.Text = "SISTEMA DE ERROS";
+            label3.Text = "SISTEMA DE TINTAS";
             // 
             // senha
             // 
@@ -91,7 +91,7 @@
             usuario.Name = "usuario";
             usuario.Size = new Size(237, 27);
             usuario.TabIndex = 1;
-           
+            // 
             // Login
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -104,7 +104,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "Login";
-            Text = "Sistema De Erros";
+            Text = "Sistema De Tintas";
             Load += Form2_Load;
             ResumeLayout(false);
             PerformLayout();

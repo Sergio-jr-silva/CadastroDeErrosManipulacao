@@ -133,9 +133,9 @@
             label2.AutoSize = true;
             label2.Location = new Point(91, 286);
             label2.Name = "label2";
-            label2.Size = new Size(168, 20);
+            label2.Size = new Size(174, 20);
             label2.TabIndex = 10;
-            label2.Text = "Gerenciamento de Erros";
+            label2.Text = "Gerenciamento de Tintas";
             // 
             // pictureBox5
             // 

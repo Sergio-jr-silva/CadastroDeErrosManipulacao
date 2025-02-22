@@ -31,7 +31,7 @@ namespace CadastroDeErros.Supervisor
                 // Renomear as colunas para exibição mais amigável
                 TbErros.Columns["IdProdutos"].HeaderText = "Produto";
                 TbErros.Columns["EmpresaId"].HeaderText = "Empresa";
-                TbErros.Columns["Descricao"].HeaderText = "Descrição";
+                TbErros.Columns["Descricao"].HeaderText = "Motivo";
                 TbErros.Columns["DataCadastro"].HeaderText = "Data de Cadastro";
 
                 // Adiciona colunas de botões se ainda não existirem

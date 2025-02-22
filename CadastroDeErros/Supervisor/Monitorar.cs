@@ -47,14 +47,14 @@ namespace CadastroDeErros.Supervisor;
                     totalValorErros += Convert.ToDecimal(row["total_valor"]);
                 }
 
-                    lblTotalErros.Text = $"Total de erros no sistema: {totalErrosSistema}";
-                    Valor.Text  = $"Valor total dos erros: R$ {totalValorErros:F2}";
+                    lblTotalErros.Text = $"Total de Tintas no sistema: {totalErrosSistema}";
+                    Valor.Text  = $"Valor total: R$ {totalValorErros:F2}";
 
 
 
                 chartErros.Series.Clear();
 
-                    Series seriesErros = new Series("Total de Erros")
+                    Series seriesErros = new Series("Total de Tintas")
                     {
                         ChartType = SeriesChartType.Pie
                     };
